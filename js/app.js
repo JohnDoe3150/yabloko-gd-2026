@@ -4,8 +4,8 @@ class App
 	URL_SOURCE = 'https://www.yabloko.ru/okruga-gd-2026';
 
 	TXT_SEARCH_PLACEHOLDER = 'Поиск Кандидатов';
-	TXT_PAGE_TITLE = 'Яблоко - Выборы в ГД 2026';
-	TXT_INFO = 'Кандидаты от Яблоко на Выборы в Государственную Думу 2026 Года';
+	//TXT_PAGE_TITLE = 'Яблоко - Выборы в ГД 2026';
+	TXT_INFO = 'Кандидаты от Яблоко на Выборы в Государственную Думу 2026 Года. Одномандатные Округа';
 	TXT_UTL_TG = 'Телеграм';
 	TXT_UTL_SOURCE = 'Источник';
 	TXT_NUM = 'Округ';
@@ -26,7 +26,7 @@ class App
 	
 	initPage ()
 	{
-		$(document).prop('title', this.TXT_PAGE_TITLE);
+		//$(document).prop('title', this.TXT_PAGE_TITLE);
 
 		$('body').html
 		(`

@@ -6,10 +6,13 @@ class App
 	TXT_SEARCH_PLACEHOLDER = 'Поиск Кандидатов';
 	//TXT_PAGE_TITLE = 'Яблоко - Выборы в ГД 2026';
 	TXT_INFO = 'Кандидаты от Партии Яблоко на Выборы в Госдуму 2026 Года. Одномандатные Округа';
-	TXT_UTL_TG = 'Телеграм';
-	TXT_UTL_SOURCE = 'Источник';
+	TXT_URL_TG = 'Телеграм';
+	TXT_URL_SOURCE = 'Источник';
+	TXT_URL_ABOUT = '?';
 	TXT_NUM = 'Округ';
 	TXT_EMPTY = 'Нет Кандидатов, Соответствующих Поисковому Запросу';
+
+	SYMB_WS = ' ';
 
 	TIMER_TIME = 1000;
 
@@ -34,7 +37,7 @@ class App
 				<div class=info>
 					<div class=txt>${this.TXT_INFO}</div>
 					<div class=list>
-						<a class=btn href="${this.URL_SOURCE}">${this.TXT_UTL_SOURCE}</a>
+						<a class="btn btn-small" href="${this.URL_SOURCE}">${this.TXT_URL_SOURCE}</a>
 					</div>
 				</div>
 				<div class=search><input id=input class=input type=text id=search placeholder="${this.TXT_SEARCH_PLACEHOLDER}"></div>
@@ -144,7 +147,7 @@ class App
 				<div class=region>${i.region}</div>
 				<div class=district>${i.district}</div>
 				<div class=hr><hr></div>
-				<div class=name>${i.name}</div>
+				${this.viewSearchItemName(i)}
 				<div class=desc>${i.desc}</div>
 				${this.viewSearchItemUrl(i)}
 			</div>`
@@ -152,14 +155,24 @@ class App
 		
 		return c;
 	}
+			
+	viewSearchItemName (i)
+	{
+		let c = '';
+			
+		if (i.name) c += `<div class=txt>${i.name}</div>`;
+		if (i.url_about) c += `<a class="btn btn-icon" href="${i.url_about}"></a>`;
+		
+		return c ? `<div class=name>${c}</div>` : '';
+	}
 
 	viewSearchItemUrl (i)
 	{
 		let c = '';
 		
-		if (i.url_tg) c += `<a class=btn href="${i.url_tg}">${this.TXT_UTL_TG}</a>`;
+		if (i.url_tg) c += `<a class="btn btn-med" href="${i.url_tg}">${this.TXT_URL_TG}</a>`;
 		
-		return c ?  `<div class=list>${c}</div>` : '';
+		return c ? `<div class=list>${c}</div>` : '';
 	}
 
 	viewAllData ()

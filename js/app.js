@@ -1,6 +1,6 @@
 class App
 {
-	URL_DATA = '/data/people.csv';
+	URL_DATA = 'data/people.csv';
 	URL_SOURCE = 'https://www.yabloko.ru/okruga-gd-2026';
 
 	TXT_SEARCH_PLACEHOLDER = 'Поиск Кандидатов';

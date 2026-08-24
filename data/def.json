@@ -17,7 +17,7 @@
 		]
 	},
 	"url" : {
-		"people" : "./../data/people.csv",
+		"people" : "data/people.csv",
 		"candidate_source" : "https://www.yabloko.ru/okruga-gd-2026",
 		"donate" : "https://www.yabloko.ru/donate"
 	},

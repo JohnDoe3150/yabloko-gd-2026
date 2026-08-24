@@ -1,188 +1,57 @@
-class App
+import def from './../data/def.json?v=7' with {type: 'json'};
+
+const util = new class
 {
-	URL_DATA = 'data/people.csv';
-	URL_SOURCE = 'https://www.yabloko.ru/okruga-gd-2026';
-
-	TXT_SEARCH_PLACEHOLDER = 'Поиск Кандидатов';
-	//TXT_PAGE_TITLE = 'Яблоко - Выборы в ГД 2026';
-	TXT_INFO = 'Кандидаты от Партии Яблоко на Выборы в Госдуму 2026 Года. Одномандатные Округа';
-	TXT_URL_TG = 'Телеграм';
-	TXT_URL_SOURCE = 'Источник';
-	TXT_URL_ABOUT = '?';
-	TXT_NUM = 'Округ';
-	TXT_EMPTY = 'Нет Кандидатов, Соответствующих Поисковому Запросу';
-
-	SYMB_WS = ' ';
-
-	TIMER_TIME = 1000;
-
-	data = [];
-	timer;
-
-	constructor ()
+	formatTxt (i)
 	{
-		this
-			.initData()
-			.initPage()
-			.initSearch();
+		if (Array.isArray(i)) 
+		{
+			var s = '';
+			
+			for (let e of i) s += `<p>${e}</p>`;
+			
+			return s;
+		}
+		else return i;
 	}
 	
-	initPage ()
+	toH (i, n = 1)
 	{
-		//$(document).prop('title', this.TXT_PAGE_TITLE);
-
-		$('body').html
-		(`
-			<div class=content>
-				<div class=info>
-					<div class=txt>${this.TXT_INFO}</div>
-					<div class=list>
-						<a class="btn btn-small" href="${this.URL_SOURCE}">${this.TXT_URL_SOURCE}</a>
-					</div>
-				</div>
-				<div class=search><input id=input class=input type=text id=search placeholder="${this.TXT_SEARCH_PLACEHOLDER}"></div>
-				<div id=result class=result></div>
-			</div>
-		`);
-		
-		return this;
+		return `<h${n}>${i}</h${n}>`;
 	}
+}
 
-	initData ()
+const data = new class
+{
+	obtained = false;
+	data = [];
+
+	init (callback)
 	{
-		var that = this;
-		
-		this.getData().then((d) => 
+		if (this.obtained) callback();
+		else
 		{
-			d.map((i) =>
+			var that = this;
+			
+			this.obtainData().then((d) => 
 			{
-				i.name = i.name.toLowerCase();
-				i.search = (i.num + i.name + i.region + i.district).replaceAll(' ', '').toLowerCase();
+				d.map((i) =>
+				{
+					i.name = i.name.toLowerCase();
+					i.search = (i.num + i.name + i.region + i.district).replaceAll(' ', '').toLowerCase();
+				});
+
+				that.data = d;
+				that.obtained = true;
+				
+				callback();
 			});
-
-			that.data = d;
-			
-			if (!that.timer) that.viewAllData();
-		});
-
-		return this;
-	}
-
-	initSearch ()
-	{
-		var that = this;
-
-		$('#input').on('input', function ()
-		{
-			let d = $(this).val();
-			
-			clearTimeout(that.timer);
-
-			that.timer = setTimeout((d) => that.startSearch(d), that.TIMER_TIME, d);
-		});
-		
-		$('#input').on('keydown', function(e)
-		{
-			if (e.key === 'Escape') that.resetSearch();
-		});
-		
-		return this;
-	}
-
-	resetSearch ()
-	{
-		$('#input').val('');
-
-		clearTimeout(this.timer);
-
-		this.viewAllData();
-	}
-
-	startSearch (input)
-	{
-		if (input)
-		{
-			var result = [];
-
-			input = input.toLowerCase();
-
-			if (this.data)
-			{
-				for (let i of this.data) if (this.hasSearchInput(i.search, input)) result.push(i);
-			}
-			else console.log('Search : No Data');
-			
-			this.viewSearch(result);
 		}
-		else this.viewAllData();
 	}
 
-	hasSearchInput (search, needle)
+	async obtainData ()
 	{
-		var o = needle.split(' ');
-		
-		for (let i of o) if (!search.includes(i)) return false
-
-		return true;
-	}
-		
-	viewSearch (d)
-	{
-		var c = '';
-		
-		for (let i of d) c += this.viewSearchItem(i);
-		
-		if (!c) c = `<div class=msg>${this.TXT_EMPTY}</div>`;
-		
-		$('#result').html(c);
-	}
-
-	viewSearchItem (i)
-	{
-		let c = '';
-		
-		c += (
-			`<div class=item>
-				<div class=num>${i.num} ${this.TXT_NUM}</div>
-				<div class=region>${i.region}</div>
-				<div class=district>${i.district}</div>
-				<div class=hr><hr></div>
-				${this.viewSearchItemName(i)}
-				<div class=desc>${i.desc}</div>
-				${this.viewSearchItemUrl(i)}
-			</div>`
-		);
-		
-		return c;
-	}
-			
-	viewSearchItemName (i)
-	{
-		let c = '';
-			
-		if (i.name) c += `<div class=txt>${i.name}</div>`;
-		if (i.url_about) c += `<a class="btn btn-icon" href="${i.url_about}"></a>`;
-		
-		return c ? `<div class=name>${c}</div>` : '';
-	}
-
-	viewSearchItemUrl (i)
-	{
-		let c = '';
-		
-		if (i.url_tg) c += `<a class="btn btn-med" href="${i.url_tg}">${this.TXT_URL_TG}</a>`;
-		
-		return c ? `<div class=list>${c}</div>` : '';
-	}
-
-	viewAllData ()
-	{
-		this.viewSearch(this.data);
-	}
-
-	async getData ()
-	{
-		let url = this.URL_DATA + `?t=${new Date().getTime()}`;
+		let url = def.url.people + `?t=${new Date().getTime()}`;
 		
 		const r = await fetch(url);
 		
@@ -198,39 +67,260 @@ class App
 		return d.data;
 	}
 
-	async getData1 ()
+	get ()
 	{
-		try {
-			// 1. Append a timestamp to the URL to bypass browser caching
-			const fileUrl = this.URL_DATA + `?t=${new Date().getTime()}`;
+		return this.data;
+	}
+}
 
-			// 2. Fetch the file from the server as an ArrayBuffer
-			const response = await fetch(fileUrl);
+const view = new class
+{
+	page ()
+	{
+		$('body').html
+		(`
+			<div id=menu></div>
+			<div id=main></div>
+		`);
+		
+		return this;
+	}
+	
+	menu ()
+	{
+		$('#menu').html
+		(`
+			<div class=content>
+				<div class=list>
+					<a id=menu-candidate class="menu-item btn btn-big btn-disa" href="#/candidate">${def.txt.menu_candidate}</a>
+					<a id=menu-donate class="menu-item btn btn-big btn-disa" href="#/donate">${def.txt.menu_donate}</a>
+				</div>
+			</div>
+		`);
+		
+		return this;
+	}
+	
+	menuItem (i)
+	{
+		$('.menu-item').removeClass('btn-ena');
+		
+		$('#menu-' + i).addClass('btn-ena');
+		
+		return this;
+	}
+};
+
+const page = new class
+{
+	constructor ()
+	{
+		view
+			.page()
+			.menu();
+	}
+	
+	candidate = new class
+	{
+		timer;
+		
+		start ()
+		{
+			view.menuItem('candidate');
 			
-			if (!response.ok) throw new Error('Network response was not ok');
+			this
+				.initPage()
+				.initData()
+				.initSearch();
+		}
+		
+		initPage ()
+		{
+			$('#main').html
+			(`
+				<div class=content>
+					<div class=info>
+						<div class=txt>${def.txt.candidate_header}</div>
+						<div class=list>
+							<a class="btn btn-small" href="${def.url.candidate_source}">${def.txt.url_source}</a>
+						</div>
+					</div>
+					<div class=search><input id=input class=input type=text id=search placeholder="${def.txt.search_placeholder}"></div>
+					<div id=result class=result></div>
+				</div>
+			`);
+			
+			return this;
+		}
+		
+		initData ()
+		{
+			data.init(() => this.resetSearch());
+			
+			return this;
+		}
+		
+		initSearch ()
+		{
+			var that = this;
 
-			const arrayBuffer = await response.arrayBuffer();
+			$('#input').on('input', function ()
+			{
+				clearTimeout(that.timer);
 
-			// 3. Convert ArrayBuffer into a Uint8Array for SheetJS processing
-			//console.log(arrayBuffer);
-			const data = new Uint8Array(arrayBuffer);
+				that.timer = setTimeout(() => that.startSearch(), def.config.timer_time);
+			});
 
-			// 4. Parse the Excel file data
-			const workbook = XLSX.read(data);
-			//const workbook = XLSX.read(data, {type: 'array',  codepage: 1251 });
-			//const workbook = XLSX.read(data, {type: 'array'});
-			//const workbook = XLSX.read(data, { type: "binary", codepage: 1251 });
-			//const workbook = XLSX.read(data, { codepage: 1251 });
+			$('#input').on('keydown', function(e)
+			{
+				if (e.key === 'Escape') that.resetSearch();
+				else if (e.key === 'Enter') that.startSearch();
+			});
 
-			// 5. Target the first sheet and convert it to JSON
-			const firstSheetName = workbook.SheetNames[0];
-			const worksheet = workbook.Sheets[firstSheetName];
-			const jsonData = XLSX.utils.sheet_to_json(worksheet);
-			//console.log(jsonData);
-			//console.log("Successfully reloaded Excel data:", jsonData);
-			return jsonData;
-		} catch (error) {
-			console.error("Failed to reload Excel file:", error);
+			return this;
+		}
+
+		resetSearch ()
+		{
+			$('#input').val('');
+
+			this.startSearch();
+		}
+
+		startSearch ()
+		{
+			clearTimeout(this.timer);
+			
+			var result = [];
+			var input = $('#input').val();
+			var d = data.get();
+			
+			if (input)
+			{
+				var result = [];
+
+				input = input.toLowerCase();
+
+				if (d)
+				{
+					for (let i of d) if (this.hasSearchInput(i.search, input)) result.push(i);
+				}
+				else console.log('Search : No Data');
+
+				this.viewSearch(result);
+			}
+			else result = d;
+			
+			this.viewSearch(result);
+		}
+
+		hasSearchInput (search, needle)
+		{
+			var o = needle.split(' ');
+
+			for (let i of o) if (!search.includes(i)) return false
+
+			return true;
+		}
+
+		viewSearch (d)
+		{
+			var c = '';
+
+			for (let i of d) c += this.viewSearchItem(i);
+
+			if (!c) c = `<div class=msg>${def.txt.empty}</div>`;
+
+			$('#result').html(c);
+		}
+
+		viewSearchItem (i)
+		{
+			let c = '';
+
+			c += (
+				`<div class=item>
+					<div class=num>${i.num} ${def.txt.num}</div>
+					<div class=region>${i.region}</div>
+					<div class=district>${i.district}</div>
+					<div class=hr><hr></div>
+					${this.viewSearchItemName(i)}
+					<div class=desc>${i.desc}</div>
+					${this.viewSearchItemUrl(i)}
+				</div>`
+			);
+
+			return c;
+		}
+
+		viewSearchItemName (i)
+		{
+			let c = '';
+
+			if (i.name) c += `<div class=txt>${i.name}</div>`;
+			if (i.url_about) c += `<a class="btn btn-icon" href="${i.url_about}"></a>`;
+
+			return c ? `<div class=name>${c}</div>` : '';
+		}
+
+		viewSearchItemUrl (i)
+		{
+			let c = '';
+
+			if (i.url_tg) c += `<a class="btn btn-med" href="${i.url_tg}">${def.txt.url_tg}</a>`;
+
+			return c ? `<div class=list>${c}</div>` : '';
+		}
+
+		viewAllData ()
+		{
+			this.viewSearch(data.get());
 		}
 	}
+	
+	donate = new class
+	{
+		start ()
+		{
+			view.menuItem('donate');
+			
+			this.initPage();
+		}
+		
+		initPage ()
+		{
+			$('#main').html
+			(`
+				<div class=content>
+					<div class=article>
+						<div class=txt>${util.toH(def.txt.donate_header, 2)}${util.formatTxt(def.txt.donate_txt)}</div>
+						<div class=list>
+							<a class="btn btn-med" href="${def.url.donate}">${def.txt.donate_url}</a>
+						</div>
+					</div>
+				</div>
+			`);
+			
+			return this;
+		}
+	}
+}
+
+const router = new class
+{
+	start ()
+	{
+		const router = new Navigo('/', {hash: true});
+		
+		router
+			.on('/candidate', () => page.candidate.start())
+			.on('/donate', () => page.donate.start())
+			.notFound(() => router.navigate('/candidate'))
+			.resolve();
+	}
+}
+
+export function start ()
+{
+	router.start();
 }

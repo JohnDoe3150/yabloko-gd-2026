@@ -1,4 +1,4 @@
-import router from '#app/router.js?v=8';
+import router from '#app/router.js?v=9';
 
 export default new class
 {

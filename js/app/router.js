@@ -1,5 +1,5 @@
-//import Navigo from '#lib/navigo.js?v=8';
-import controller from '#app/controller.js?v=8';
+//import Navigo from '#lib/navigo.js?v=9';
+import controller from '#app/controller.js?v=9';
 
 export default new class
 {

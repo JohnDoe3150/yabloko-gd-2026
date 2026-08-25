@@ -55,7 +55,7 @@ h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 	& .result > .item > .num {font-size: 125%;}
 	& .result > .item > .name {display: flex; gap: 1rem; align-items: center;}
 	& .result > .item > .name > .txt {font-size: 150%; text-transform: capitalize;}
-	& .result > .item > .name > .btn {flex-shrink: 0; background-image: url('./../img/icon/info.svg?v=8'); background-size: 75%; background-position: center; background-repeat: no-repeat; }
+	& .result > .item > .name > .btn {flex-shrink: 0; background-image: url('./../img/icon/info.svg?v=9'); background-size: 75%; background-position: center; background-repeat: no-repeat; }
 	& .result > .item > .desc {font-size: 90%;}
 	& .result > .item > .hr {width: 75%; padding: 0.25rem 0;}
 	& .result > .item > .list {padding-top: 0.5rem;}

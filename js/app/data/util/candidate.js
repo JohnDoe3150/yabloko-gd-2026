@@ -1,4 +1,4 @@
-import def from '#app/data/def.js?v=8';
+import def from '#app/data/def.js?v=9';
 
 var data = [];
 
@@ -24,7 +24,7 @@ async function load (i)
 
 export async function obtain ()
 {
-	var d = await load(def.url.people + `?t=${new Date().getTime()}`);
+	var d = await load(def.url.candidate + `?t=${new Date().getTime()}`);
 
 	d = Papa.parse(d, {
 		header: true,

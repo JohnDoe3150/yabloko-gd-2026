@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 	<head>
 		<title>Яблоко - Выборы в Госдуму 2026</title>
 		
-		<link rel="icon" type="image/png" href="img/logo.png?v=7">
+		<link rel="icon" type="image/png" href="img/logo.png?v=8">
 		
 		<meta property="og:title" content="Яблоко - Выборы в Госдуму 2026" />
 		<meta property="og:description" content="Список кандидатов в одномандатных округах" />
-		<meta property="og:image" content="https://johndoe3150.github.io/yabloko-gd-2026/img/preview.webp?v=7" />
+		<meta property="og:image" content="https://johndoe3150.github.io/yabloko-gd-2026/img/preview.webp?v=8" />
 		<meta property="og:url" content="https://johndoe3150.github.io/yabloko-gd-2026/" />
 		
 		<meta charset="utf-8">
@@ -17,18 +17,26 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 
-		<script src="./js/jq-4.0.0.js?v=7"></script>
-		<script src="./js/papaparse.min.js?v=7"></script>
-		<script src="./js/navigo.js?v=7"></script>
+		<script src="./js/jq-4.0.0.js?v=8"></script>
+		<script src="./js/papaparse.min.js?v=8"></script>
+		<script src="./js/navigo.js?v=8"></script>
 
-		<link rel="stylesheet" href="./style/general.css?v=7">
+		<link rel="stylesheet" href="./style/general.css?v=8">
 		
+		<script type="importmap">
+		{
+			"imports": {
+				"#app/": "./js/app/",
+				"#lib/": "./js/lib/",
+				"#data/": "./data/"
+			}
+		}
 		</script>
 
 		<script type="module">
-			import {start} from './js/app.js?v=7';
+			import launcher from '#app/launcher.js?v=8';
 			
-			start();
+			launcher.start();
 		</script>
 	</head>
 	<body></body>

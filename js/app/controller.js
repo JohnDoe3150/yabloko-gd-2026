@@ -1,7 +1,7 @@
-import candidate from '#app/controller/candidate.js?v=10';
-import donate from '#app/controller/donate.js?v=10';
-import menu from '#app/controller/menu.js?v=10';
-import page from '#app/controller/page.js?v=10';
+import candidate from '#app/controller/candidate.js?v=11';
+import donate from '#app/controller/donate.js?v=11';
+import menu from '#app/controller/menu.js?v=11';
+import page from '#app/controller/page.js?v=11';
 
 export default new class
 {

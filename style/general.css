@@ -19,13 +19,19 @@ hr {margin-block: 0; border-color: var(--cl-hr);}
 h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 
 .content {display: flex; justify-content: center; width: 100%; max-width:60rem; padding: 1rem;}
+
 .list {display: flex;}
+.list-horiz {display: flex;}
+.list-vert {display: flex; flex-direction: column;}
 
 .btn {display: flex; justify-content: center; align-items: center; color: var(--cl-btn-txt); background: var(--cl-item-active); text-align: center; _word-break: auto-phrase;}
-.btn-small {font-size: 75%; padding: 0.25rem; border-radius: 10rem;}
+.btn-small {font-size: 75%; padding: 0.5rem; border-radius: 10rem;}
 .btn-med {padding:0.5rem; border-radius: 10rem;}
-.btn-big {_font-size: 125%; padding:0.75rem; border-radius: 10rem;}
-.btn-icon {width:1.75rem; height: 1.75rem; border-radius: 100%;}
+.btn-med-spacious {padding:0.75rem; border-radius: 10rem;}
+.btn-big {font-size: 125%; padding:0.75rem; border-radius: 10rem;}
+.btn-icon {width:1.75rem; height: 1.75rem; border-radius: 100%; aspect-ratio: 1/1; flex-shrink: 0;}
+.btn-variadic {width:unset; height: unset;}
+.btn-icon-info {_flex-shrink: 0; background-image: url('./../img/icon/info.svg?v=11'); background-size: 75%; background-position: center; background-repeat: no-repeat;}
 .btn-disa {background: var(--cl-btn-disa);}
 .btn-ena {background: var(--cl-btn-ena);}
 
@@ -41,10 +47,9 @@ h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 	
 	& .content {flex-direction: column; gap: 2rem; padding: 1rem;}
 	
-	& .info {display: flex; flex-direction: column; gap: 1rem;}
+	& .info {display: flex; flex-direction: column; gap: 2rem;}
+	& .info > .list {justify-content: center; gap: 1rem;}
 	& .info > .txt {text-align: center; font-size: 125%;}
-	& .info > .list { justify-content: center; }
-	& .info > .list > .btn {font-size: 75%; padding: 0.25rem; border-radius: 2rem;}
 
 	& .search {display: flex; justify-content: center;}
 	& .search > .input {width: 30rem; padding:1rem; border-radius: 2rem; border: 0.15rem solid var(--cl-item-passive); _box-sizing: border-box;}
@@ -55,7 +60,6 @@ h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 	& .result > .item > .num {font-size: 125%;}
 	& .result > .item > .name {display: flex; gap: 1rem; align-items: center;}
 	& .result > .item > .name > .txt {font-size: 150%; text-transform: capitalize;}
-	& .result > .item > .name > .btn {flex-shrink: 0; background-image: url('./../img/icon/info.svg?v=10'); background-size: 75%; background-position: center; background-repeat: no-repeat; }
 	& .result > .item > .desc {font-size: 90%;}
 	& .result > .item > .hr {width: 75%; padding: 0.25rem 0;}
 	& .result > .item > .list {padding-top: 0.5rem;}

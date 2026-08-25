@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=10';
-import data from '#app/data/candidate-lazy.js?v=10';
-import controller from '#app/controller.js?v=10';
+import def from '#app/data/def.js?v=11';
+import data from '#app/data/candidate-lazy.js?v=11';
+import controller from '#app/controller.js?v=11';
 
 export default new class
 {
@@ -24,7 +24,9 @@ export default new class
 				<div class=info>
 					<div class=txt>${def.txt.candidate_header}</div>
 					<div class=list>
-						<a class="btn btn-small" href="${def.url.candidate_source}">${def.txt.url_source}</a>
+						<a class="btn btn-small" href="${def.url.volunteer}">${def.txt.volunteer}</a>
+						<a class="btn btn-small" href="${def.url.observe}">${def.txt.observe}</a>
+						<a class="btn btn-small btn-icon btn-icon-info btn-variadic" href="${def.url.candidate_source}"></a>
 					</div>
 				</div>
 				<div class=search><input id=input class=input type=text id=search placeholder="${def.txt.search_placeholder}"></div>
@@ -144,7 +146,7 @@ export default new class
 		let c = '';
 
 		if (i.name) c += `<div class=txt>${i.name}</div>`;
-		if (i.url_about) c += `<a class="btn btn-icon" href="${i.url_about}"></a>`;
+		if (i.url_about) c += `<a class="btn btn-icon btn-icon-info" href="${i.url_about}"></a>`;
 
 		return c ? `<div class=name>${c}</div>` : '';
 	}

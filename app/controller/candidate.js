@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=13';
-import data from '#app/data/getter/candidate.js?v=13';
-import controller from '#app/controller.js?v=13';
+import def from '#app/data/def.js?v=14';
+import data from '#app/data/getter/candidate.js?v=14';
+import controller from '#app/controller.js?v=14';
 
 export default new class
 {
@@ -24,9 +24,10 @@ export default new class
 				<div class=info>
 					<div class=txt>${def.txt.candidate_header}</div>
 					<div class=list>
-						<a class="btn btn-small" href="${def.url.volunteer}">${def.txt.volunteer}</a>
-						<a class="btn btn-small" href="${def.url.observe}">${def.txt.observe}</a>
-						<a class="btn btn-small btn-icon btn-icon-info btn-variadic" href="${def.url.candidate_source}"></a>
+						<a class="btn btn-fix-small" href="${def.url.gosuslugi}">${def.txt.gosuslugi}</a>
+						<a class="btn btn-fix-small" href="${def.url.volunteer}">${def.txt.volunteer}</a>
+						<a class="btn btn-fix-small" href="${def.url.observe}">${def.txt.observe}</a>
+						<a class="btn btn-fix-small btn-icon btn-icon-info" href="${def.url.candidate_source}"></a>
 					</div>
 				</div>
 				<div class=search><input id=input class=input type=text id=search placeholder="${def.txt.search_placeholder}"></div>
@@ -146,7 +147,7 @@ export default new class
 		let c = '';
 
 		if (i.name) c += `<div class=txt>${i.name}</div>`;
-		if (i.url_about) c += `<a class="btn btn-icon btn-icon-info" href="${i.url_about}"></a>`;
+		if (i.url_about) c += `<a class="btn btn-fix-smaller btn-icon btn-icon-info" href="${i.url_about}"></a>`;
 
 		return c ? `<div class=name>${c}</div>` : '';
 	}

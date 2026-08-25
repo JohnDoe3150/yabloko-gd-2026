@@ -1,5 +1,5 @@
-import controller from '#app/controller.js?v=13';
-import router from '#app/router.js?v=13';
+import controller from '#app/controller.js?v=14';
+import router from '#app/router.js?v=14';
 
 export default new class
 {

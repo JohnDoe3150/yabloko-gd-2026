@@ -31,7 +31,7 @@ h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 .btn-big {font-size: 125%; padding:0.75rem; border-radius: 10rem;}
 .btn-icon {width:1.75rem; height: 1.75rem; border-radius: 100%; aspect-ratio: 1/1; flex-shrink: 0;}
 .btn-variadic {width:unset; height: unset;}
-.btn-icon-info {_flex-shrink: 0; background-image: url('./../img/icon/info.svg?v=11'); background-size: 75%; background-position: center; background-repeat: no-repeat;}
+.btn-icon-info {_flex-shrink: 0; background-image: url('./../img/icon/info.svg?v=12'); background-size: 75%; background-position: center; background-repeat: no-repeat;}
 .btn-disa {background: var(--cl-btn-disa);}
 .btn-ena {background: var(--cl-btn-ena);}
 

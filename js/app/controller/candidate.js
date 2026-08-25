@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=11';
-import data from '#app/data/candidate-lazy.js?v=11';
-import controller from '#app/controller.js?v=11';
+import def from '#app/data/def.js?v=12';
+import data from '#app/data/candidate-lazy.js?v=12';
+import controller from '#app/controller.js?v=12';
 
 export default new class
 {

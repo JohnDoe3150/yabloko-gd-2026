@@ -1,11 +1,10 @@
-import def from '#app/data/def.js?v=9';
-import data from '#app/data.js?v=9';
-import controller from '#app/controller.js?v=9';
+import def from '#app/data/def.js?v=10';
+import data from '#app/data/candidate-lazy.js?v=10';
+import controller from '#app/controller.js?v=10';
 
 export default new class
 {
 	timer;
-	data = data.candidate;
 
 	start ()
 	{
@@ -14,7 +13,7 @@ export default new class
 		this
 			.initPage()
 			.initSearch()
-			.startSearch();
+			.initData();
 	}
 
 	initPage ()
@@ -29,9 +28,18 @@ export default new class
 					</div>
 				</div>
 				<div class=search><input id=input class=input type=text id=search placeholder="${def.txt.search_placeholder}"></div>
-				<div id=result class=result></div>
+				<div id=result class=result>
+					<div class=msg><div class=loader></div></div>
+				</div>
 			</div>
 		`);
+
+		return this;
+	}
+	
+	initData ()
+	{
+		data.init(() => this.startSearch());
 
 		return this;
 	}
@@ -69,7 +77,7 @@ export default new class
 
 		var result = [];
 		var input = $('#input').val();
-		var d = this.data;
+		var d = data.get();
 
 		if (input)
 		{

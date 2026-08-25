@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=9';
+import def from '#app/data/def.js?v=10';
 
-var data = [];
+var data;
 
 function process (d)
 {
@@ -24,14 +24,30 @@ async function load (i)
 
 export async function obtain ()
 {
-	var d = await load(def.url.candidate + `?t=${new Date().getTime()}`);
+	if (!data)
+	{
+		var d = await load(def.url.candidate + `?t=${new Date().getTime()}`);
 
-	d = Papa.parse(d, {
-		header: true,
-		skipEmptyLines: true,
-	});
+		d = Papa.parse(d, {
+			header: true,
+			skipEmptyLines: true,
+		});
 
-	d = process(d.data);
+		data = process(d.data);
+	}
 	
-	return d;
+	return data;
+}
+
+export const obtainer = new class
+{
+	async init (callback)
+	{
+		obtain().then(() => callback());
+	}
+	
+	get ()
+	{
+		return data;
+	}
 }

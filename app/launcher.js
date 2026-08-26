@@ -21,7 +21,10 @@ export default new class
 		{
 			tg.ready();
 			tg.expand();
-			tg.requestFullscreen();
+		
+			const desktop = ['tdesktop'].includes(tg.platform);
+		
+			if (desktop) tg.requestFullscreen();
 		}
 	}
 }

@@ -5,9 +5,22 @@ export default new class
 {
 	start ()
 	{
+		this.tg()
+		
 		controller.page.start();
 		controller.menu.start();
 		
 		router.start();
+	}
+	
+	tg ()
+	{
+		const tg = window.Telegram?.WebApp;
+
+		if (tg)
+		{
+			tg.ready();
+			tg.expand();
+		}
 	}
 }

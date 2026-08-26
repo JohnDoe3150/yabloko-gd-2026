@@ -21,6 +21,7 @@ export default new class
 		{
 			tg.ready();
 			tg.expand();
+			tg.requestFullscreen();
 		}
 	}
 }

@@ -1,13 +1,14 @@
 :root {
-	--cl-bg: #E9ECEF;
+	--cl-bg: #f0f4f9;
 	--cl-item-bg: #fff;
-	--cl-passive: #ADB5BD;
-	--cl-active: #0066cc;
-	--cl-txt: #212529;
+	--cl-passive: #B2B5B9;
+	--cl-active: #2662C4;
+	--cl-txt: #141415;
 	--cl-btn-txt: #fff;
-	--cl-btn-ena: #343A40;
-	--cl-btn-disa: #ADB5BD;
-	--cl-hr: #dee2e6;
+	--cl-btn-txt-alt: var(--cl-txt);
+	--cl-btn-ena: rgba(150, 169, 191, 0.65);
+	--cl-btn-disa: rgba(169, 186, 208, 0.3);
+	--cl-hr: #D1D4D9;
 	--font-general: 'Nunito', sans-serif;
 	--sh-general : 0 0 0.75rem rgba(0, 0, 0, 0.33);
 }
@@ -18,7 +19,7 @@ a, a:link, a:visited, a:hover, a:active {text-decoration: none;}
 hr {margin-block: 0; border-color: var(--cl-hr);}
 h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 
-.content {display: flex; justify-content: center; width: 100%; max-width:60rem; padding: 1rem;}
+.content {display: flex; justify-content: center; width: 100%; max-width:60rem; _padding: 1rem;}
 
 .list {display: flex;}
 .list-horiz {display: flex;}
@@ -31,22 +32,22 @@ h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 .btn-small {font-size: 75%; padding: 0.5rem; border-radius: 10rem;}
 .btn-med {padding:0.5rem; border-radius: 10rem;}
 .btn-med-spacious {padding:0.75rem; border-radius: 10rem;}
-.btn-disa {background: var(--cl-btn-disa);}
-.btn-ena {background: var(--cl-btn-ena);}
+.btn-disa {background: var(--cl-btn-disa); color: var(--cl-btn-txt-alt);}
+.btn-ena {background: var(--cl-btn-ena); color: var(--cl-btn-txt-alt); _border: thin solid var(--cl-btn-ena);}
 
 .btn-fix-smaller {height: 0.75rem; padding: 0.5rem; font-size: 75%; border-radius: 10rem;}
 .btn-fix-small {height: 1rem; padding: 0.5rem; font-size: 75%; border-radius: 10rem;}
 
 .btn-icon {border-radius: 100%; aspect-ratio: 1/1; flex-shrink: 0;}
-.btn-icon-info {background-image: url('./../img/icon/info.svg?v=15'); background-size: 75%; background-position: center; background-repeat: no-repeat;}
+.btn-icon-info {background-image: url('./../img/icon/info.svg?v=16'); background-size: 75%; background-position: center; background-repeat: no-repeat;}
 
 /**/
 
 #menu {
 	display: flex; justify-content: center; _width: 100%;
 	
-	& .content {flex-direction: column;}
-	& .list {justify-content: center; gap: 1rem; background: var(--cl-item-bg); padding: 1rem; border-radius: 10rem; box-shadow: var(--sh-general);}
+	& .content {flex-direction: column; padding: 1rem; padding-top: 0.5rem;}
+	& .list {justify-content: center; gap: 0.5rem; background: var(--cl-item-bg); padding: 0.5rem; border-radius: 10rem; _box-shadow: var(--sh-general);}
 }
 
 #main {

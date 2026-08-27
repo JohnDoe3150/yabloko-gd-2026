@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=15';
-import data from '#app/data/getter/candidate.js?v=15';
-import controller from '#app/controller.js?v=15';
+import def from '#app/data/def.js?v=16';
+import data from '#app/data/getter/candidate.js?v=16';
+import controller from '#app/controller.js?v=16';
 
 export default new class
 {
@@ -13,7 +13,10 @@ export default new class
 		this
 			.initPage()
 			.initSearch()
-			.initData();
+			.initData()
+			.initObservation();
+		
+		controller.tg.initLink();
 	}
 
 	initPage ()
@@ -24,10 +27,10 @@ export default new class
 				<div class=info>
 					<div class=txt>${def.txt.candidate_header}</div>
 					<div class=list>
-						<a class="btn btn-fix-small" href="${def.url.gosuslugi}">${def.txt.gosuslugi}</a>
-						<a class="btn btn-fix-small" href="${def.url.volunteer}">${def.txt.volunteer}</a>
-						<a class="btn btn-fix-small" href="${def.url.observe}">${def.txt.observe}</a>
-						<a class="btn btn-fix-small btn-icon btn-icon-info" href="${def.url.candidate_source}"></a>
+						<a class="link-external btn btn-fix-small" href="${def.url.gosuslugi}">${def.txt.gosuslugi}</a>
+						<a class="link-external btn btn-fix-small" href="${def.url.volunteer}">${def.txt.volunteer}</a>
+						<a class="link-external btn btn-fix-small" href="${def.url.observe}">${def.txt.observe}</a>
+						<a class="link-external btn btn-fix-small btn-icon btn-icon-info" href="${def.url.candidate_source}"></a>
 					</div>
 				</div>
 				<div class=search><input id=input class=input type=text id=search placeholder="${def.txt.search_placeholder}"></div>
@@ -111,6 +114,8 @@ export default new class
 
 		return true;
 	}
+	
+	////
 
 	viewSearch (d)
 	{
@@ -147,7 +152,7 @@ export default new class
 		let c = '';
 
 		if (i.name) c += `<div class=txt>${i.name}</div>`;
-		if (i.url_about) c += `<a class="btn btn-fix-smaller btn-icon btn-icon-info" href="${i.url_about}"></a>`;
+		if (i.url_about) c += `<a class="link-external btn btn-fix-smaller btn-icon btn-icon-info" href="${i.url_about}"></a>`;
 
 		return c ? `<div class=name>${c}</div>` : '';
 	}
@@ -159,5 +164,26 @@ export default new class
 		if (i.url_tg) c += `<a class="btn btn-med" href="${i.url_tg}">${def.txt.url_tg}</a>`;
 
 		return c ? `<div class=list>${c}</div>` : '';
+	}
+	
+	////
+	
+	initObservation ()
+	{
+		//const config = { attributes: true, childList: true, subtree: true };
+		const config = {childList: true};
+
+		// Callback function to execute when mutations are observed
+		const callback = (mutations, observer) =>
+		{
+			for (const mutation of mutations)
+			{
+				if (mutation.type === "childList") controller.tg.initLink();
+			}
+		};
+
+		const observer = new MutationObserver(callback);
+
+		observer.observe($('#result')[0], config);
 	}
 }

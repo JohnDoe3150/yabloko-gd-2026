@@ -32,6 +32,8 @@
 		"info" : "ℹ"
 	},
 	"config" : {
-		"timer_time" : 1000
+		"timer_time" : 1000,
+		"tg" : false,
+		"tg_platform" : ["tdesktop"]
 	}
 }

@@ -1,14 +1,14 @@
 :root {
-	--cl-bg: #f0f4f9;
+	--cl-bg: #f0f3f7;
 	--cl-item-bg: #fff;
-	--cl-passive: #B2B5B9;
+	--cl-passive: #C1C3C7;
 	--cl-active: #2662C4;
 	--cl-txt: #141415;
 	--cl-btn-txt: #fff;
 	--cl-btn-txt-alt: var(--cl-txt);
 	--cl-btn-ena: rgba(150, 169, 191, 0.65);
 	--cl-btn-disa: rgba(169, 186, 208, 0.3);
-	--cl-hr: #D1D4D9;
+	--cl-hr: #C1C3C7;
 	--font-general: 'Nunito', sans-serif;
 	--sh-general : 0 0 0.75rem rgba(0, 0, 0, 0.33);
 }
@@ -16,7 +16,7 @@
 body {all: unset; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--cl-bg); font-family: var(--font-general);}
 input {font-family: inherit;}
 a, a:link, a:visited, a:hover, a:active {text-decoration: none;}
-hr {margin-block: 0; border-color: var(--cl-hr);}
+hr {margin-block: 0; _border-color: var(--cl-hr); border: 0; border-top: 1px solid var(--cl-hr);}
 h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 
 .content {display: flex; justify-content: center; width: 100%; max-width:60rem; _padding: 1rem;}
@@ -39,7 +39,7 @@ h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 .btn-fix-small {height: 1rem; padding: 0.5rem; font-size: 75%; border-radius: 10rem;}
 
 .btn-icon {border-radius: 100%; aspect-ratio: 1/1; flex-shrink: 0;}
-.btn-icon-info {background-image: url('./../img/icon/info.svg?v=18'); background-size: 75%; background-position: center; background-repeat: no-repeat;}
+.btn-icon-info {background-image: url('./../img/icon/info.svg?v=19'); background-size: 75%; background-position: center; background-repeat: no-repeat;}
 
 /**/
 

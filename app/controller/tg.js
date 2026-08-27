@@ -1,4 +1,4 @@
-import def from '#app/data/def.js?v=16';
+import def from '#app/data/def.js?v=17';
 
 export default new class
 {
@@ -41,7 +41,7 @@ export default new class
 		{
 			const tg = window.Telegram.WebApp;
 
-			$('a.link-external').on('click', (e) =>
+			$('a.link-external').off('click').on('click', (e) =>
 			{
 				e.preventDefault();
 

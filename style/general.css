@@ -39,7 +39,7 @@ h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 .btn-fix-small {height: 1rem; padding: 0.5rem; font-size: 75%; border-radius: 10rem;}
 
 .btn-icon {border-radius: 100%; aspect-ratio: 1/1; flex-shrink: 0;}
-.btn-icon-info {background-image: url('./../img/icon/info.svg?v=17'); background-size: 75%; background-position: center; background-repeat: no-repeat;}
+.btn-icon-info {background-image: url('./../img/icon/info.svg?v=18'); background-size: 75%; background-position: center; background-repeat: no-repeat;}
 
 /**/
 
@@ -72,7 +72,7 @@ h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 	& .result > .item > .hr {width: 75%; padding: 0.25rem 0;}
 	& .result > .item > .list {padding-top: 0.5rem;}
 	& .result > .item > .list > .btn {padding:0.5rem; border-radius: 2rem;}
-	& .result > .msg {display: flex; justify-content: center; padding-top: 6rem; text-align: center;}
+	& .result > .msg {display: flex; justify-content: center; padding-top: 4rem; text-align: center;}
 	
 	& .article {display: flex; flex-direction: column; gap: 1rem; background: var(--cl-item-bg); padding: 1rem; border-radius: 1rem;}
 	& .article > .list {justify-content: center; padding: 1rem 0;}

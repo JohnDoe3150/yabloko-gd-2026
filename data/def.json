@@ -34,6 +34,6 @@
 	"config" : {
 		"timer_time" : 1000,
 		"tg" : false,
-		"tg_platform" : ["tdesktop"]
+		"tg_platform_full" : ["tdesktop"]
 	}
 }

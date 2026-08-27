@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=17';
-import data from '#app/data/getter/candidate.js?v=17';
-import controller from '#app/controller.js?v=17';
+import def from '#app/data/def.js?v=18';
+import data from '#app/data/getter/candidate.js?v=18';
+import controller from '#app/controller.js?v=18';
 
 export default new class
 {
@@ -13,8 +13,7 @@ export default new class
 		this
 			.initPage()
 			.initSearch()
-			.initData()
-			.initObservation();
+			.initData();
 		
 		controller.tg.initLink();
 	}
@@ -87,8 +86,6 @@ export default new class
 
 		if (input)
 		{
-			var result = [];
-
 			input = input.toLowerCase();
 
 			if (d)
@@ -96,12 +93,11 @@ export default new class
 				for (let i of d) if (this.hasSearchInput(i.search, input)) result.push(i);
 			}
 			else console.log('Search : No Data');
-
-			this.viewSearch(result);
 		}
 		else result = d;
 
 		this.viewSearch(result);
+		this.afterSearch();
 		
 		return this;
 	}
@@ -166,8 +162,13 @@ export default new class
 		return c ? `<div class=list>${c}</div>` : '';
 	}
 	
-	////
+	afterSearch ()
+	{
+		controller.tg.initLink();
+	}
 	
+	////
+	/*
 	initObservation ()
 	{
 		//const config = { attributes: true, childList: true, subtree: true };
@@ -186,4 +187,5 @@ export default new class
 
 		observer.observe($('#result')[0], config);
 	}
+	*/
 }

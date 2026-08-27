@@ -1,4 +1,4 @@
-import def from '#app/data/def.js?v=17';
+import def from '#app/data/def.js?v=18';
 
 export default new class
 {
@@ -13,7 +13,13 @@ export default new class
 	{
 		const tg = window.Telegram?.WebApp;
 
-		if (tg && this.isValidPlatform(tg.platform)) def.config.tg = true;
+		if (tg && tg.initData)
+		{
+			def.config.tg = true;
+		
+			console.log('App : inside tg');
+		}
+		else console.log('App : not inside tg');
 
 		return this;
 	}
@@ -26,7 +32,7 @@ export default new class
 		
 			tg.ready();
 		
-			const full = ['tdesktop'].includes(tg.platform);
+			const full = def.config.tg_platform_full.includes(tg.platform);
 		
 			if (full) tg.requestFullscreen();
 			else tg.expand();
@@ -50,10 +56,5 @@ export default new class
 		}
 		
 		return this;
-	}
-		
-	isValidPlatform (i)
-	{
-		return def.config.tg_platform.includes(i);
 	}
 }

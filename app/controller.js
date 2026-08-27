@@ -1,8 +1,8 @@
-import candidate from '#app/controller/candidate.js?v=17';
-import donate from '#app/controller/donate.js?v=17';
-import menu from '#app/controller/menu.js?v=17';
-import page from '#app/controller/page.js?v=17';
-import tg from '#app/controller/tg.js?v=17';
+import candidate from '#app/controller/candidate.js?v=18';
+import donate from '#app/controller/donate.js?v=18';
+import menu from '#app/controller/menu.js?v=18';
+import page from '#app/controller/page.js?v=18';
+import tg from '#app/controller/tg.js?v=18';
 
 export default new class
 {

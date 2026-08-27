@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=20';
-import controller from '#app/controller.js?v=20';
-import util from '#app/util.js?v=20';
+import def from '#app/data/def.js?v=21';
+import controller from '#app/controller.js?v=21';
+import util from '#app/util.js?v=21';
 
 export default new class
 {

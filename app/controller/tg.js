@@ -1,4 +1,4 @@
-import def from '#app/data/def.js?v=20';
+import def from '#app/data/def.js?v=21';
 
 export default new class
 {

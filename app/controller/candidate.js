@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=19';
-import data from '#app/data/getter/candidate.js?v=19';
-import controller from '#app/controller.js?v=19';
+import def from '#app/data/def.js?v=20';
+import data from '#app/data/getter/candidate.js?v=20';
+import controller from '#app/controller.js?v=20';
 
 export default new class
 {
@@ -164,7 +164,7 @@ export default new class
 	
 	afterSearch ()
 	{
-		controller.tg.initLink();
+		controller.tg.initLink('#result');
 	}
 	
 	////

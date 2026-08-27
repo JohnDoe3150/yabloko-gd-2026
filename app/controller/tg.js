@@ -1,4 +1,4 @@
-import def from '#app/data/def.js?v=19';
+import def from '#app/data/def.js?v=20';
 
 export default new class
 {
@@ -7,6 +7,14 @@ export default new class
 		this
 			.initConfig()
 			.initSize();
+	}
+	
+	testConfig ()
+	{
+		def.config.tg = true;
+		console.log('App.Test : inside tg');
+		
+		return this;
 	}
 	
 	initConfig ()
@@ -41,13 +49,13 @@ export default new class
 		return this;
 	}
 		
-	initLink ()
+	initLink (selector = '')
 	{
 		if (def.config.tg)
 		{
 			const tg = window.Telegram.WebApp;
 
-			$('a.link-external').off('click').on('click', (e) =>
+			$(selector + ' a.link-external').off('click').on('click', (e) =>
 			{
 				e.preventDefault();
 

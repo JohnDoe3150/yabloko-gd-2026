@@ -1,61 +1,49 @@
-import def from '#app/data/def.js?v=21';
+import def from '#app/data/def.js?v=22';
 
+function initConfig ()
+{
+	const tg = window.Telegram?.WebApp;
+
+	if (tg && tg.initData)
+	{
+		def.config.tg_enable = true;
+
+		console.log('App : inside tg');
+	}
+	else console.log('App : not inside tg');
+}
+
+function initSize ()
+{
+	if (def.config.tg_enable)
+	{
+		const tg = window.Telegram.WebApp;
+
+		tg.ready();
+
+		const full = def.config.tg_platform_full.includes(tg.platform);
+
+		if (full) tg.requestFullscreen();
+		else tg.expand();
+	}
+}
+		
 export default new class
 {
 	start ()
 	{
-		this
-			.initConfig()
-			.initSize();
+		initConfig()
+		initSize();
 	}
 	
-	testConfig ()
-	{
-		def.config.tg = true;
-		console.log('App.Test : inside tg');
-		
-		return this;
-	}
-	
-	initConfig ()
-	{
-		const tg = window.Telegram?.WebApp;
 
-		if (tg && tg.initData)
-		{
-			def.config.tg = true;
-		
-			console.log('App : inside tg');
-		}
-		else console.log('App : not inside tg');
-
-		return this;
-	}
-	
-	initSize ()
+	listenToAllLinks ()
 	{
-		if (def.config.tg)
+		if (def.config.tg_enable)
 		{
 			const tg = window.Telegram.WebApp;
 		
-			tg.ready();
-		
-			const full = def.config.tg_platform_full.includes(tg.platform);
-		
-			if (full) tg.requestFullscreen();
-			else tg.expand();
-		}
-		
-		return this;
-	}
-		
-	initLink (selector = '')
-	{
-		if (def.config.tg)
-		{
-			const tg = window.Telegram.WebApp;
-
-			$(selector + ' a.link-external').off('click').on('click', (e) =>
+			$(document).off('click',  'a.role-link').on('click', 'a.role-link', (e) =>
 			{
 				e.preventDefault();
 

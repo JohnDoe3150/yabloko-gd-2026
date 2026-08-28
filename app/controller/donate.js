@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=21';
-import controller from '#app/controller.js?v=21';
-import util from '#app/util.js?v=21';
+import def from '#app/data/def.js?v=22';
+import controller from '#app/controller.js?v=22';
+import util from '#app/util.js?v=22';
 
 export default new class
 {
@@ -10,7 +10,7 @@ export default new class
 
 		this.initPage();
 		
-		controller.tg.initLink();
+		controller.tg.listenToAllLinks();
 	}
 
 	initPage ()
@@ -21,7 +21,7 @@ export default new class
 				<div class=article>
 					<div class=txt>${util.toH(def.txt.donate_header, 2)}${util.formatTxt(def.txt.donate_txt)}</div>
 					<div class=list>
-						<a class="link-external btn btn-med" href="${def.url.donate}">${def.txt.donate_url}</a>
+						<a class="role-link btn btn-med btn-style-link" href="${def.url.donate}">${def.txt.donate_url}</a>
 					</div>
 				</div>
 			</div>

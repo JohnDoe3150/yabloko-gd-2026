@@ -1,4 +1,4 @@
-import def from '#app/data/def.js?v=21';
+import def from '#app/data/def.js?v=22';
 
 var data;
 
@@ -13,6 +13,13 @@ function process (d)
 	return d;
 }
 
+function getUrl ()
+{
+	const i = def.config.app_test_enable ? def.url.candidate_data_test : def.url.candidate_data;
+	
+	return i + `?t=${new Date().getTime()}`;
+}
+
 async function load (i)
 {
 	var r = await fetch(i);
@@ -22,11 +29,11 @@ async function load (i)
 	return await r.text();
 }
 
-export async function obtain ()
+async function obtain ()
 {
 	if (!data)
 	{
-		var d = await load(def.url.candidate + `?t=${new Date().getTime()}`);
+		var d = await load(getUrl());
 
 		d = Papa.parse(d, {
 			header: true,
@@ -39,7 +46,7 @@ export async function obtain ()
 	return data;
 }
 
-export const obtainer = new class
+export default new class
 {
 	async init (callback)
 	{

@@ -1,10 +1,14 @@
-import def from '#app/data/def.js?v=21';
-import data from '#app/data/getter/candidate.js?v=21';
-import controller from '#app/controller.js?v=21';
+import def from '#app/data/def.js?v=22';
+import data from '#app/data/getter/candidate.js?v=22';
+import controller from '#app/controller.js?v=22';
+import filter from '#app/controller/candidate/filter.js?v=22';
 
 export default new class
 {
+	filter = filter;
+
 	timer;
+	search = {};
 
 	start ()
 	{
@@ -15,26 +19,29 @@ export default new class
 			.initSearch()
 			.initData();
 		
-		controller.tg.initLink();
+		controller.tg.listenToAllLinks();
 	}
 
 	initPage ()
 	{
+		const named = 'role-link btn btn-fix-small btn-style-link';
+		const icon = 'role-link btn btn-fix-small btn-style-icon btn-icon-info';
+		
 		$('#main').html
 		(`
 			<div class=content>
-				<div class=info>
-					<div class=txt>${def.txt.candidate_header}</div>
-					<div class=list>
-						<a class="link-external btn btn-fix-small" href="${def.url.gosuslugi}">${def.txt.gosuslugi}</a>
-						<a class="link-external btn btn-fix-small" href="${def.url.volunteer}">${def.txt.volunteer}</a>
-						<a class="link-external btn btn-fix-small" href="${def.url.observe}">${def.txt.observe}</a>
-						<a class="link-external btn btn-fix-small btn-icon btn-icon-info" href="${def.url.candidate_source}"></a>
-					</div>
+				<div id=title>${def.txt.candidate_header}</div>
+				<div id=link class=list>
+					<a class="${named}" href="${def.url.gosuslugi}">${def.txt.gosuslugi}</a>
+					<a class="${named}" href="${def.url.volunteer}">${def.txt.volunteer}</a>
+					<a class="${named}" href="${def.url.observe}">${def.txt.observe}</a>
+					<a class="${icon}" href="${def.url.candidate_source}"></a>
 				</div>
-				<div class=search><input id=input class=input type=text id=search placeholder="${def.txt.search_placeholder}"></div>
-				<div id=result class=result>
-					<div class=msg><div class=loader></div></div>
+				<div id=search><input id=input class=input type=text placeholder="${def.txt.search_placeholder}"></div>
+				<div id=result>
+					<div class=container>
+						<div class=loader></div>
+					</div>
 				</div>
 			</div>
 		`);
@@ -44,7 +51,11 @@ export default new class
 	
 	initData ()
 	{
-		data.init(() => this.startSearch());
+		data.init(() =>
+		{
+			this.filter.start();
+			this.startSearch();
+		});
 
 		return this;
 	}
@@ -84,20 +95,16 @@ export default new class
 		var input = $('#input').val();
 		var d = data.get();
 
+		d = this.filter.filterData(d);
+
 		if (input)
 		{
 			input = input.toLowerCase();
-
-			if (d)
-			{
-				for (let i of d) if (this.hasSearchInput(i.search, input)) result.push(i);
-			}
-			else console.log('Search : No Data');
+			
+			d = d.filter((i) => this.hasSearchInput(i.search, input));
 		}
-		else result = d;
 
-		this.viewSearch(result);
-		this.afterSearch();
+		this.viewSearch(d);
 		
 		return this;
 	}
@@ -119,7 +126,7 @@ export default new class
 
 		for (let i of d) c += this.viewSearchItem(i);
 
-		if (!c) c = `<div class=msg>${def.txt.empty}</div>`;
+		if (!c) c = `<div class=container><div class=msg>${def.txt.empty}</div></div>`;
 
 		$('#result').html(c);
 	}
@@ -148,7 +155,7 @@ export default new class
 		let c = '';
 
 		if (i.name) c += `<div class=txt>${i.name}</div>`;
-		if (i.url_about) c += `<a class="link-external btn btn-fix-smaller btn-icon btn-icon-info" href="${i.url_about}"></a>`;
+		if (i.url_about) c += `<a class="role-link btn btn-fix-smaller btn-style-icon btn-icon-info" href="${i.url_about}"></a>`;
 
 		return c ? `<div class=name>${c}</div>` : '';
 	}
@@ -156,36 +163,11 @@ export default new class
 	viewSearchItemUrl (i)
 	{
 		let c = '';
-
-		if (i.url_tg) c += `<a class="btn btn-med" href="${i.url_tg}">${def.txt.url_tg}</a>`;
+		let st = 'role-link btn btn-med btn-style-link';
+		
+		if (i.url_money) c += `<a class="${st}" href="${i.url_money}">${def.txt.url_money}</a>`;
+		if (i.url_tg) c += `<a class="${st}" href="${i.url_tg}">${def.txt.url_tg}</a>`;
 
 		return c ? `<div class=list>${c}</div>` : '';
 	}
-	
-	afterSearch ()
-	{
-		controller.tg.initLink('#result');
-	}
-	
-	////
-	/*
-	initObservation ()
-	{
-		//const config = { attributes: true, childList: true, subtree: true };
-		const config = {childList: true};
-
-		// Callback function to execute when mutations are observed
-		const callback = (mutations, observer) =>
-		{
-			for (const mutation of mutations)
-			{
-				if (mutation.type === "childList") controller.tg.initLink();
-			}
-		};
-
-		const observer = new MutationObserver(callback);
-
-		observer.observe($('#result')[0], config);
-	}
-	*/
 }

@@ -2,7 +2,7 @@
 	"txt" : {
 		"search_placeholder" : "Поиск Кандидатов",
 		"url_tg" : "Телеграм",
-		"url_source" : "Источник",
+		"url_money" : "Сбор Средств",
 		"num" : "Округ",
 		"empty" : "Нет Кандидатов, Соответствующих Поисковому Запросу",
 		"menu_candidate" : "Кандидаты",
@@ -20,7 +20,8 @@
 		]
 	},
 	"url" : {
-		"candidate" : "data/candidate.csv",
+		"candidate_data" : "data/candidate.csv",
+		"candidate_data_test" : "data/candidate-test.csv",
 		"candidate_source" : "https://www.yabloko.ru/okruga-gd-2026",
 		"donate" : "https://www.yabloko.ru/donate",
 		"volunteer" : "https://www.yabloko.ru/volunteer",
@@ -28,12 +29,15 @@
 		"gosuslugi" : "https://voter.gosuslugi.ru/elections"
 	},
 	"symb" : {
-		"ws" : " ",
-		"info" : "ℹ"
+		"ws" : " "
 	},
 	"config" : {
 		"timer_time" : 1000,
-		"tg" : false,
-		"tg_platform_full" : ["tdesktop"]
+		"tg_enable" : false,
+		"tg_platform_full" : ["tdesktop"],
+		"filter_enable" : true,
+		"filter" : ["url_money"],
+		"app_launch_enable" : true,
+		"app_test_enable" : false
 	}
 }

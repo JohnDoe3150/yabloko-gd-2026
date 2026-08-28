@@ -1,3 +1,3 @@
-import {obtainer} from '#app/data/util/candidate.js?v=21';
+import getter from '#app/data/util/candidate.js?v=22';
 
-export default obtainer;
+export default getter;

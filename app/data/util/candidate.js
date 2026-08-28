@@ -1,4 +1,4 @@
-import def from '#app/data/def.js?v=25';
+import def from '#app/data/def.js?v=26';
 
 var data;
 

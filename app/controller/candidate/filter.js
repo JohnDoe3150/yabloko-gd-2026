@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=25';
-import data from '#app/data/getter/candidate.js?v=25';
-import controller from '#app/controller.js?v=25';
+import def from '#app/data/def.js?v=26';
+import data from '#app/data/getter/candidate.js?v=26';
+import controller from '#app/controller.js?v=26';
 
 var curr = {};
 
@@ -38,7 +38,7 @@ function listenToAllFilters ()
 		if (flipFilterState(id)) $(e.target).addClass('state-on');
 		else $(e.target).removeClass('state-on');
 		
-		controller.candidate.search.start();
+		controller.candidate.search.startSearch();
 	});
 }
 

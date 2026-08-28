@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=25';
-import data from '#app/data/getter/candidate.js?v=25';
-import controller from '#app/controller.js?v=25';
+import def from '#app/data/def.js?v=26';
+import data from '#app/data/getter/candidate.js?v=26';
+import controller from '#app/controller.js?v=26';
 
 var curr = {};
 
@@ -15,18 +15,18 @@ function initSearch ()
 	});
 }
 
-function startSearchWithTimeout (faster)
+function startSearchWithTimeout (fast)
 {
 	showLoader();
 
 	clearTimeout(curr.timer);
 
-	curr.timer = setTimeout(startSearch, calcSearchTimeout(faster));
+	curr.timer = setTimeout(startSearch, calcSearchTimeout(fast));
 }
 
-function calcSearchTimeout (faster)
+function calcSearchTimeout (fast)
 {
-	return faster ? def.config.search_timeout_fast : def.config.search_timeout;
+	return fast ? def.config.search_timeout_fast : def.config.search_timeout;
 }
 
 function startSearch ()
@@ -139,9 +139,14 @@ export default new class
 		initSearch();
 	}
 	
-	start (faster)
+	start ()
 	{
-		startSearchWithTimeout(faster);
+		startSearch();
+	}
+	
+	startSearch (fast)
+	{
+		startSearchWithTimeout(fast);
 	}
 	
 	showLoader ()

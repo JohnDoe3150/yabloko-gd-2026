@@ -1,4 +1,4 @@
-import def from '#app/data/def.js?v=22';
+import def from '#app/data/def.js?v=23';
 
 function initConfig ()
 {

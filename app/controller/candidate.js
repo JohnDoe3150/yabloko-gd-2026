@@ -1,7 +1,7 @@
-import def from '#app/data/def.js?v=22';
-import data from '#app/data/getter/candidate.js?v=22';
-import controller from '#app/controller.js?v=22';
-import filter from '#app/controller/candidate/filter.js?v=22';
+import def from '#app/data/def.js?v=23';
+import data from '#app/data/getter/candidate.js?v=23';
+import controller from '#app/controller.js?v=23';
+import filter from '#app/controller/candidate/filter.js?v=23';
 
 export default new class
 {

@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=22';
-import controller from '#app/controller.js?v=22';
-import router from '#app/router.js?v=22';
+import def from '#app/data/def.js?v=23';
+import controller from '#app/controller.js?v=23';
+import router from '#app/router.js?v=23';
 
 export default new class
 {

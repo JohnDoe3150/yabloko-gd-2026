@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=22';
-import candidate from '#app/data/getter/candidate.js?v=22';
-import controller from '#app/controller.js?v=22';
+import def from '#app/data/def.js?v=23';
+import candidate from '#app/data/getter/candidate.js?v=23';
+import controller from '#app/controller.js?v=23';
 
 var data = {};
 

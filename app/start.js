@@ -1,3 +1,3 @@
-import launcher from '#app/launcher.js?v=26';
+import launcher from '#app/launcher.js?v=27';
 
 launcher.start();

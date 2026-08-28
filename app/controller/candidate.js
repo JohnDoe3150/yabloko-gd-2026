@@ -1,8 +1,8 @@
-import def from '#app/data/def.js?v=26';
-import data from '#app/data/getter/candidate.js?v=26';
-import controller from '#app/controller.js?v=26';
-import filter from '#app/controller/candidate/filter.js?v=26';
-import search from '#app/controller/candidate/search.js?v=26';
+import def from '#app/data/def.js?v=27';
+import data from '#app/data/getter/candidate.js?v=27';
+import controller from '#app/controller.js?v=27';
+import filter from '#app/controller/candidate/filter.js?v=27';
+import search from '#app/controller/candidate/search.js?v=27';
 
 function initPage ()
 {

@@ -55,11 +55,11 @@ h2 {margin-block-start: 1rem; margin-block-end: 1rem;}
 .btn-style-main.state-on {color: var(--cl-btn-txt-da); background: var(--cl-accent-3);}
 
 .btn-style-filter {color: var(--cl-btn-txt-da); background-color: var(--cl-accent-1); border: 1px solid var(--cl-accent-2);}
-.btn-style-filter::before {display: flex; justify-content: center; justify-content: center; height: inherit; content: url('./../img/icon/check-off-da.svg?v=24'); padding-right: 0.25rem;}
+.btn-style-filter::before {display: flex; justify-content: center; justify-content: center; height: inherit; content: url('./../img/icon/check-off-da.svg?v=25'); padding-right: 0.25rem;}
 .btn-style-filter.state-on {background-color: var(--cl-accent-2); border-color: var(--cl-accent-3);}
-.btn-style-filter.state-on::before {display: flex; justify-content: center; justify-content: center; height: inherit; content: url('./../img/icon/check-on-da.svg?v=24'); padding-right: 0.25rem;}
+.btn-style-filter.state-on::before {display: flex; justify-content: center; justify-content: center; height: inherit; content: url('./../img/icon/check-on-da.svg?v=25'); padding-right: 0.25rem;}
 
-.btn-icon-info {background-color: var(--cl-link); background-image: url('./../img/icon/info-li.svg?v=24'); background-size: 75%; background-position: center; background-repeat: no-repeat;}
+.btn-icon-info {background-color: var(--cl-link); background-image: url('./../img/icon/info-li.svg?v=25'); background-size: 75%; background-position: center; background-repeat: no-repeat;}
 
 /**/
 

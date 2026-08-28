@@ -1,4 +1,4 @@
-import def from '#app/data/def.js?v=24';
+import def from '#app/data/def.js?v=25';
 
 var data;
 
@@ -15,11 +15,27 @@ function process (d)
 
 function getUrl ()
 {
-	const i = def.config.app_test_enable ? def.url.candidate_data_test : def.url.candidate_data;
-	
-	return i + `?t=${new Date().getTime()}`;
+	if (def.config.app_test_enable) return addTimeParam(def.url.candidate_data_test);
+	{
+		if (def.config.candidate_data_google_enable)
+		{
+			const id = def.url.candidate_data_google
+			const name = 'Data';
+			const url = `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&sheet=${name}`
+			
+			return addTimeParam(url, true);
+		}
+		else return addTimeParam(def.url.candidate_data);
+	}
 }
 
+function addTimeParam (url, add)
+{
+	const t = `t=${new Date().getTime()}`;
+	
+	return url + (add ? def.symb.ampersand : def.symb.question) + t;
+}
+	
 async function load (i)
 {
 	var r = await fetch(i);

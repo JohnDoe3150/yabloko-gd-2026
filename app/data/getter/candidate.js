@@ -1,3 +1,3 @@
-import getter from '#app/data/util/candidate.js?v=24';
+import getter from '#app/data/util/candidate.js?v=25';
 
 export default getter;

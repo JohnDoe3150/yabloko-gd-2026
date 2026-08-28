@@ -32,7 +32,8 @@
 		"ws" : " "
 	},
 	"config" : {
-		"timer_time" : 1000,
+		"search_timeout" : 1000,
+		"search_timeout_fast" : 250,
 		"tg_enable" : false,
 		"tg_platform_full" : ["tdesktop"],
 		"filter_enable" : true,

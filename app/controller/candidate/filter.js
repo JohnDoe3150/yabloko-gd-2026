@@ -1,18 +1,18 @@
-import def from '#app/data/def.js?v=23';
-import candidate from '#app/data/getter/candidate.js?v=23';
-import controller from '#app/controller.js?v=23';
+import def from '#app/data/def.js?v=24';
+import data from '#app/data/getter/candidate.js?v=24';
+import controller from '#app/controller.js?v=24';
 
-var data = {};
+var curr = {};
 
 function initFilter ()
 {
-	data.state = {};
+	curr.state = {};
 	
-	for (let v of candidate.get())
+	for (let v of data.get())
 	{
 		for (let v1 of def.config.filter)
 		{
-			if (v[v1]) data.state[v1] = false;
+			if (v[v1]) curr.state[v1] = false;
 		}
 	}
 }
@@ -21,7 +21,7 @@ function viewFilter ()
 {
 	var s = '';
 	
-	for (let k in data.state) s += `<div class="role-filter btn btn-fix-small btn-style-filter" data-id="${k}">${def.txt[k]}</div>`;
+	for (let k in curr.state) s += `<div class="role-filter btn btn-fix-small btn-style-filter" data-id="${k}">${def.txt[k]}</div>`;
 	
 	if (s)
 	{
@@ -38,21 +38,21 @@ function listenToAllFilters ()
 		if (flipFilterState(id)) $(e.target).addClass('state-on');
 		else $(e.target).removeClass('state-on');
 		
-		controller.candidate.startSearch();
+		controller.candidate.search.start();
 	});
 }
 
 function flipFilterState (i)
 {
-	if (data.state[i]) return data.state[i] = false;
-	else return data.state[i] = true;
+	if (curr.state[i]) return curr.state[i] = false;
+	else return curr.state[i] = true;
 }
 
 function considerFilter (i)
 {
-	for (let k in data.state)
+	for (let k in curr.state)
 	{
-		if (data.state[k])
+		if (curr.state[k])
 		{
 			if (!i[k]) return false;
 		}

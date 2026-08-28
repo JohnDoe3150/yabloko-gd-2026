@@ -1,8 +1,8 @@
 .loader {
   --color-1: rgb(20, 20, 21);
-  --color-2: rgba(20, 20, 21, 0.25);
-  --color-3: rgba(20, 20, 21, 0.5);
-  --color-4: rgba(20, 20, 21, 0.75);
+  --color-2: rgba(20, 20, 21, 0.1);
+  --color-3: rgba(20, 20, 21, 0.3);
+  --color-4: rgba(20, 20, 21, 0.7);
   --size: 1px;
 
   font-size: calc(10 * var(--size));

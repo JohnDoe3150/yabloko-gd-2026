@@ -4,8 +4,10 @@ export default new class
 	{
 		$('body').html
 		(`
-			<div id=menu></div>
-			<div id=main></div>
+			<div id=page>
+				<div id=menu></div>
+				<div id=main></div>
+			</div>
 		`);
 	}
 }

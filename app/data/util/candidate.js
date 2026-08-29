@@ -1,4 +1,4 @@
-import def from '#app/data/def.js?v=27';
+import def from '#app/data/def.js?v=28';
 
 var data;
 
@@ -15,17 +15,29 @@ function process (d)
 
 function getUrl ()
 {
-	if (def.config.app_test_enable) return addTimeParam(def.url.candidate_data_test);
+	if (def.config.app_data_external_enable)
 	{
-		if (def.config.candidate_data_google_enable)
+		if (def.config.app_test_enable)
 		{
-			const id = def.url.candidate_data_google
-			const name = 'Data';
-			const url = `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&sheet=${name}`
-			
-			return addTimeParam(url, true);
+			var id = def.data.candidate_external_test[0];
+			var sheet = def.data.candidate_external_test[1];
 		}
-		else return addTimeParam(def.url.candidate_data);
+		else
+		{
+			var id = def.data.candidate_external[0];
+			var sheet = def.data.candidate_external[1];
+		}
+
+		var url = `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv&sheet=${sheet}`;
+
+		return addTimeParam(url, true);
+	}
+	else
+	{
+		if (def.config.app_test_enable) var url = def.data.candidate_internal_test;
+		else var url = def.data.candidate_internal;
+
+		return addTimeParam(url);
 	}
 }
 

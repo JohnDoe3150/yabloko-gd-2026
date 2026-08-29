@@ -1,17 +1,13 @@
 {
 	"txt" : {
 		"search_placeholder" : "Поиск Кандидатов",
+		"search_empty" : "Нет Кандидатов, Соответствующих Поисковому Запросу",
 		"url_tg" : "Телеграм",
 		"url_money" : "Сбор Средств",
 		"num" : "Округ",
-		"empty" : "Нет Кандидатов, Соответствующих Поисковому Запросу",
 		"menu_candidate" : "Кандидаты",
 		"menu_donate" : "Пожертвовать Средства",
-		"volunteer" : "Стать Волонтером",
-		"observe" : "Стать Наблюдателем",
-		"gosuslugi" : "Выборы на Госуслугах",
 		"candidate_header" : "Кандидаты от Партии Яблоко на Выборы в Госдуму 2026 Года. Одномандатные Округа",
-		"donate_url" : "Пожертвовать Средства",
 		"donate_header" : "Пожертвовать Средства на Избирательную Кампанию",
 		"donate_txt" : [
 			"В связи с рисками крупных штрафов и путаницы реквизитов счетов, которые оказываются в публичном доступе, мы не осуществляем сбор пожертвований на счета региональных отделений партии в рамках избирательной кампании в Госдуму.",
@@ -19,15 +15,32 @@
 			"Этот способ существенно снижает риски финансовых нарушений и связанных с ними штрафов и иных форм наказания для кандидатов, поскольку поступающие пожертвования проверяет и сопровождает команда профессиональных юристов и бухгалтеров."
 		]
 	},
-	"url" : {
-		"candidate_data" : "data/candidate.csv",
-		"candidate_data_test" : "data/candidate-test.csv",
-		"candidate_data_google" : "1met0_rNacUGeaZcZIduTIHVnkKtMeMmozvoFb6bku9c",
-		"candidate_source" : "https://www.yabloko.ru/okruga-gd-2026",
-		"donate" : "https://www.yabloko.ru/donate",
-		"volunteer" : "https://www.yabloko.ru/volunteer",
-		"observe" : "https://www.yabloko.ru/control",
-		"gosuslugi" : "https://voter.gosuslugi.ru/elections"
+	"data" : {
+		"candidate_internal" : "data/candidate.csv",
+		"candidate_internal_test" : "data/candidate-test.csv",
+		"candidate_external" : ["1met0_rNacUGeaZcZIduTIHVnkKtMeMmozvoFb6bku9c", "Prod"],
+		"candidate_external_test" : ["1met0_rNacUGeaZcZIduTIHVnkKtMeMmozvoFb6bku9c", "Test"]
+	},
+	"link" : {
+		"candidate" : {
+			"url" : "https://www.yabloko.ru/okruga-gd-2026"
+		},
+		"donate" : {
+			"url" : "https://www.yabloko.ru/donate",
+			"txt" : "Пожертвовать Средства"
+		},
+		"volunteer" : {
+			"url" : "https://www.yabloko.ru/volunteer",
+			"txt" : "Стать Волонтером"
+		},
+		"observe" : {
+			"url" : "https://www.yabloko.ru/control",
+			"txt" : "Стать Наблюдателем"
+		},
+		"gosuslugi" : {
+			"url" : "https://voter.gosuslugi.ru/elections",
+			"txt" : "Выборы на Госуслугах"
+		}
 	},
 	"symb" : {
 		"ws" : " ",
@@ -41,8 +54,8 @@
 		"tg_platform_full" : ["tdesktop"],
 		"filter_enable" : true,
 		"filter" : ["url_money"],
-		"candidate_data_google_enable" : true,
 		"app_launch_enable" : true,
+		"app_data_external_enable" : true,
 		"app_test_enable" : false
 	}
 }

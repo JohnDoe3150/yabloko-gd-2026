@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=27';
-import data from '#app/data/getter/candidate.js?v=27';
-import controller from '#app/controller.js?v=27';
+import def from '#app/data/def.js?v=28';
+import data from '#app/data/getter/candidate.js?v=28';
+import controller from '#app/controller.js?v=28';
 
 var curr = {};
 

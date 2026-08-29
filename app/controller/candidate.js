@@ -1,8 +1,8 @@
-import def from '#app/data/def.js?v=27';
-import data from '#app/data/getter/candidate.js?v=27';
-import controller from '#app/controller.js?v=27';
-import filter from '#app/controller/candidate/filter.js?v=27';
-import search from '#app/controller/candidate/search.js?v=27';
+import def from '#app/data/def.js?v=28';
+import data from '#app/data/getter/candidate.js?v=28';
+import controller from '#app/controller.js?v=28';
+import filter from '#app/controller/candidate/filter.js?v=28';
+import search from '#app/controller/candidate/search.js?v=28';
 
 function initPage ()
 {
@@ -14,10 +14,10 @@ function initPage ()
 		<div class=content>
 			<div id=title>${def.txt.candidate_header}</div>
 			<div id=link class=list>
-				<a class="${named}" href="${def.url.gosuslugi}">${def.txt.gosuslugi}</a>
-				<a class="${named}" href="${def.url.volunteer}">${def.txt.volunteer}</a>
-				<a class="${named}" href="${def.url.observe}">${def.txt.observe}</a>
-				<a class="${icon}" href="${def.url.candidate_source}"></a>
+				<a class="${named}" href="${def.link.gosuslugi.url}">${def.link.gosuslugi.txt}</a>
+				<a class="${named}" href="${def.link.volunteer.url}">${def.link.volunteer.txt}</a>
+				<a class="${named}" href="${def.link.observe.url}">${def.link.observe.txt}</a>
+				<a class="${icon}" href="${def.link.candidate.url}"></a>
 			</div>
 			<div id=search><input id=input class=input type=text placeholder="${def.txt.search_placeholder}"></div>
 			<div id=result></div>

@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=27';
-import controller from '#app/controller.js?v=27';
-import util from '#app/util.js?v=27';
+import def from '#app/data/def.js?v=28';
+import controller from '#app/controller.js?v=28';
+import util from '#app/util.js?v=28';
 
 export default new class
 {
@@ -21,7 +21,7 @@ export default new class
 				<div class=article>
 					<div class=txt>${util.toH(def.txt.donate_header, 2)}${util.formatTxt(def.txt.donate_txt)}</div>
 					<div class=list>
-						<a class="role-link btn btn-med btn-style-link" href="${def.url.donate}">${def.txt.donate_url}</a>
+						<a class="role-link btn btn-med btn-style-link" href="${def.link.donate.url}">${def.link.donate.txt}</a>
 					</div>
 				</div>
 			</div>

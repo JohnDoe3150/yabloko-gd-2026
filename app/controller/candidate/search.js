@@ -1,6 +1,6 @@
-import def from '#app/data/def.js?v=28';
-import data from '#app/data/getter/candidate.js?v=28';
-import controller from '#app/controller.js?v=28';
+import def from '#app/data/def.js?v=29';
+import data from '#app/data/getter/candidate.js?v=29';
+import controller from '#app/controller.js?v=29';
 
 var curr = {};
 
@@ -113,8 +113,10 @@ function viewSearchItemOfUrl (i)
 {
 	let c = '';
 	let named = 'role-link btn btn-fix-med btn-style-link';
+	let named_neg = 'role-link btn btn-fix-med btn-style-link btn-mood-neg';
 	let icon = 'role-link btn btn-fix-med btn-style-icon btn-icon-info';
 
+	if (i.url_removed) c += `<a class="${named_neg}" href="${i.url_removed}">${def.txt.url_removed}</a>`;
 	if (i.url_money) c += `<a class="${named}" href="${i.url_money}">${def.txt.url_money}</a>`;
 	if (i.url_tg) c += `<a class="${named}" href="${i.url_tg}">${def.txt.url_tg}</a>`;
 	if (i.url_about) c += `<a class="${icon}" href="${i.url_about}"></a>`;

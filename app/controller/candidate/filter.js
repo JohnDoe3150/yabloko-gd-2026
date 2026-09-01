@@ -1,18 +1,19 @@
-import def from '#app/data/def.js?v=28';
-import data from '#app/data/getter/candidate.js?v=28';
-import controller from '#app/controller.js?v=28';
+import def from '#app/data/def.js?v=29';
+import data from '#app/data/getter/candidate.js?v=29';
+import controller from '#app/controller.js?v=29';
 
 var curr = {};
 
 function initFilter ()
 {
-	curr.state = {};
+	curr.filter = {};
 	
-	for (let v of data.get())
+	for (let k in def.filter)
 	{
-		for (let v1 of def.config.filter)
+		if (def.filter[k].enable)
 		{
-			if (v[v1]) curr.state[v1] = false;
+			curr.filter[k] = structuredClone(def.filter[k]);
+			curr.filter[k].id = k;
 		}
 	}
 }
@@ -21,7 +22,13 @@ function viewFilter ()
 {
 	var s = '';
 	
-	for (let k in curr.state) s += `<div class="role-filter btn btn-fix-small btn-style-filter" data-id="${k}">${def.txt[k]}</div>`;
+	for (let k in curr.filter)
+	{
+		let i = curr.filter[k];
+		let desc = i.desc ? `title="${i.desc}"` : '';
+		
+		s += `<div class="role-filter btn btn-fix-small btn-style-filter" ${desc} data-id="${i.id}">${i.txt}</div>`;
+	}
 	
 	if (s)
 	{
@@ -44,17 +51,26 @@ function listenToAllFilters ()
 
 function flipFilterState (i)
 {
-	if (curr.state[i]) return curr.state[i] = false;
-	else return curr.state[i] = true;
+	if (curr.filter[i].state) return curr.filter[i].state = false;
+	else return curr.filter[i].state = true;
 }
 
 function considerFilter (i)
 {
-	for (let k in curr.state)
+	for (let k in curr.filter)
 	{
-		if (curr.state[k])
+		var o = curr.filter[k];
+		
+		if (o.state)
 		{
-			if (!i[k]) return false;
+			if (o.type == 'pos')
+			{
+				if (!i[o.field]) return false;
+			}
+			else if (o.type == 'neg')
+			{
+				if (i[o.field]) return false;
+			}
 		}
 	}
 

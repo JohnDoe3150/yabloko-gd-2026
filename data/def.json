@@ -56,6 +56,10 @@
 			"url" : "https://www.yabloko.ru/control",
 			"txt" : "Стать Наблюдателем"
 		},
+		"agitate" : {
+			"url" : "https://www.yabloko.ru/agitiruy2026",
+			"txt" : "Агитировать"
+		},
 		"gosuslugi" : {
 			"url" : "https://voter.gosuslugi.ru/elections",
 			"txt" : "Выборы на Госуслугах"
